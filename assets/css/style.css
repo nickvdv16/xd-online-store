@@ -1,0 +1,171 @@
+/* =========================
+   RESET
+========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e5e5e5;
+    padding: 15px 30px;
+}
+
+.logo {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.header-right .icon {
+    margin-left: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.product-section {
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.section-inner {
+    display: flex;
+    justify-content: center;
+}
+
+/* vaste breedte voor 6 kaarten */
+.grid-wrapper {
+    width: 1625px; /* 6 × 250 + 5 × 25 */
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 22px;
+}
+
+.see-all {
+    font-weight: bold;
+    text-decoration: none;
+    color: #0066cc;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 250px);
+    gap: 25px;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.product-card {
+    width: 250px;
+    height: 400px; /* verhoogd */
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* =========================
+   IMAGE
+========================= */
+.product-image {
+    width: 220px;
+    height: 220px;
+    background-color: #ffffff;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 30px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* =========================
+   TEXT
+========================= */
+.product-card h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    align-self: flex-start;
+}
+
+.price {
+    font-size: 14px;
+    align-self: flex-start;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   STOCK STATUS
+========================= */
+.stock {
+    font-size: 14px;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.in-stock {
+    color: #2e8b57; /* groen */
+}
+
+.out-of-stock {
+    color: #b00020; /* rood */
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    padding: 20px 30px;
+    font-size: 14px;
+    color: #555;
+}
