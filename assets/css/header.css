@@ -1,0 +1,42 @@
+/* =========================
+   HEADER
+========================= */
+.site-header {
+    height: 100px;
+    background-color: #e5e5e5;
+    position: relative;
+}
+
+/* LOGO LINKS */
+.logo {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo img {
+    width: 200px;
+    height: 80px;
+    object-fit: contain;
+    display: block;
+}
+
+/* ICONS RECHTS */
+.header-icons {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 20px; /* zelfde ruimte tussen user & cart */
+}
+
+.header-icon img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: block;
+}

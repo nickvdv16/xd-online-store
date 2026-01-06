@@ -1,0 +1,46 @@
+.category-page {
+    margin-top: 40px;
+}
+
+/* TOP BAR */
+.category-top {
+    max-width: 1625px;
+    margin: 0 auto 30px;
+    padding: 0 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* FILTER KNOPPEN */
+.category-filters a {
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: #e0e0e0;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.category-filters a.active {
+    background: #b8ff9e;
+}
+
+/* SORTERING */
+.category-sort select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #ff8f8f;
+    font-weight: bold;
+}
+
+/* TITEL */
+.category-title {
+    max-width: 1625px;
+    margin: 0 auto 30px;
+    padding: 0 30px;
+    font-size: 26px;
+}
