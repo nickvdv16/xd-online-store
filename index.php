@@ -3,16 +3,11 @@ require_once 'classes/Product.php';
 
 $productModel = new Product();
 
-$articleA = $productModel->getByCategory(1, 6);
-$articleB = $productModel->getByCategory(2, 6);
-$articleC = $productModel->getByCategory(3, 6);
-$articleD = $productModel->getByCategory(4, 6);
-
 $sections = [
-    'Article A' => $articleA,
-    'Article B' => $articleB,
-    'Article C' => $articleC,
-    'Article D' => $articleD
+    'Article A' => $productModel->getByCategory(1, 6),
+    'Article B' => $productModel->getByCategory(2, 6),
+    'Article C' => $productModel->getByCategory(3, 6),
+    'Article D' => $productModel->getByCategory(4, 6)
 ];
 ?>
 <!DOCTYPE html>
@@ -24,12 +19,11 @@ $sections = [
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
     <div class="logo">Logo</div>
     <div class="header-right">
-        <a href="#" class="icon">👤</a>
-        <a href="#" class="icon">🛒</a>
+        <span class="icon">👤</span>
+        <span class="icon">🛒</span>
     </div>
 </header>
 
@@ -46,25 +40,30 @@ $sections = [
 
                 <div class="product-grid">
                     <?php foreach ($products as $product): ?>
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img
-                                    src="assets/images/<?= htmlspecialchars($product['image']) ?>"
-                                    alt="<?= htmlspecialchars($product['title']) ?>">
-                            </div>
 
-                            <h3><?= htmlspecialchars($product['title']) ?></h3>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="product-link">
+                            <article class="product-card">
 
-                            <p class="price">
-                                €<?= number_format($product['price'], 2, ',', '.') ?>
-                            </p>
+                                <div class="product-image">
+                                    <img src="assets/images/<?= htmlspecialchars($product['image']) ?>"
+                                         alt="<?= htmlspecialchars($product['title']) ?>">
+                                </div>
 
-                            <?php if ($product['stock'] > 0): ?>
-                                <p class="stock in-stock">✔ In stock</p>
-                            <?php else: ?>
-                                <p class="stock out-of-stock">✖ Out of stock</p>
-                            <?php endif; ?>
-                        </article>
+                                <h3><?= htmlspecialchars($product['title']) ?></h3>
+
+                                <p class="price">
+                                    €<?= number_format($product['price'], 2, ',', '.') ?>
+                                </p>
+
+                                <?php if ($product['stock'] > 0): ?>
+                                    <p class="stock in-stock">✔ In stock</p>
+                                <?php else: ?>
+                                    <p class="stock out-of-stock">✖ Out of stock</p>
+                                <?php endif; ?>
+
+                            </article>
+                        </a>
+
                     <?php endforeach; ?>
                 </div>
 
@@ -75,7 +74,7 @@ $sections = [
 <?php endforeach; ?>
 
 <footer class="footer">
-    © Online Store Nick Vdv
+    © Online Store Werkt
 </footer>
 
 </body>

@@ -1,24 +1,22 @@
 <?php
 
-class Database
-{
+class Database {
     private $host = "localhost";
-    private $dbname = "online_store";
-    private $username = "root";
-    private $password = "";
-    private $conn;
+    private $db   = "online_store";
+    private $user = "root";
+    private $pass = "";
 
-    public function connect()
-    {
-        if ($this->conn === null) {
-            $this->conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->dbname};charset=utf8",
-                $this->username,
-                $this->password
+    public function connect() {
+        try {
+            $pdo = new PDO(
+                "mysql:host={$this->host};dbname={$this->db};charset=utf8",
+                $this->user,
+                $this->pass
             );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        } catch (PDOException $e) {
+            die("Database error");
         }
-
-        return $this->conn;
     }
 }
