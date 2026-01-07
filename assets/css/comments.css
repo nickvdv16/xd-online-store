@@ -1,0 +1,61 @@
+/* =========================
+   COMMENTS
+========================= */
+.product-comments {
+    max-width: 800px;
+    margin: 80px auto 0;
+}
+
+.product-comments h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+/* FORM */
+#commentForm {
+    margin-bottom: 40px;
+}
+
+#commentForm textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 14px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   INDIVIDUELE COMMENT
+========================= */
+.comment {
+    background: #f2f2f2;
+    padding: 22px 24px;          /* iets meer ademruimte */
+    border-radius: 12px;
+    margin-bottom: 20px;         /* meer ruimte tussen comments */
+}
+
+/* USER */
+.comment-header {
+    display: flex;
+    flex-direction: column; /* ⬅️ BELANGRIJK */
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;    /* ⬅️ RUIMTE TUSSEN HEADER EN TEKST */
+}
+
+/* DATUM */
+.comment-date {
+    font-size: 12px;
+    font-weight: normal;
+    color: #777;
+    margin-top: 6px;
+}
+
+/* TEKST */
+.comment-text {
+    font-size: 14px;
+    line-height: 1.6;            /* beter leesbaar */
+}

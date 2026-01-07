@@ -1,20 +1,35 @@
-let qty = 1;
-
-const qtyDisplay = document.getElementById('qty');
-const qtyInput = document.getElementById('quantityInput');
-const increaseBtn = document.getElementById('increase');
 const decreaseBtn = document.getElementById('decrease');
+const increaseBtn = document.getElementById('increase');
+const qtySpan = document.getElementById('qty');
+const qtyInput = document.getElementById('quantityInput');
 
-increaseBtn.addEventListener('click', () => {
-    qty++;
-    qtyDisplay.textContent = qty;
-    qtyInput.value = qty;
-});
+if (qtyInput) {
+    let quantity = parseInt(qtyInput.value);
+    const maxStock = parseInt(qtyInput.dataset.max);
 
-decreaseBtn.addEventListener('click', () => {
-    if (qty > 1) {
-        qty--;
-        qtyDisplay.textContent = qty;
-        qtyInput.value = qty;
+    increaseBtn.addEventListener('click', () => {
+        if (quantity < maxStock) {
+            quantity++;
+            update();
+        }
+    });
+
+    decreaseBtn.addEventListener('click', () => {
+        if (quantity > 1) {
+            quantity--;
+            update();
+        }
+    });
+
+    function update() {
+        qtySpan.textContent = quantity;
+        qtyInput.value = quantity;
+
+        // Disable buttons netjes
+        decreaseBtn.disabled = quantity <= 1;
+        increaseBtn.disabled = quantity >= maxStock;
     }
-});
+
+    // Init state
+    update();
+}

@@ -17,23 +17,64 @@ class Product
         );
     }
 
-    public function getByCategory($categoryId, $limit = 6)
+    /* =========================
+       PRODUCTEN PER CATEGORIE
+       (met optionele limit)
+    ========================= */
+    public function getByCategory(int $categoryId, ?int $limit = null)
     {
+        $sql = "
+            SELECT *
+            FROM products
+            WHERE category_id = :category
+        ";
+
+        if ($limit !== null) {
+            $sql .= " LIMIT :limit";
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':category', $categoryId, PDO::PARAM_INT);
+
+        if ($limit !== null) {
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    /* =========================
+       PRODUCTEN PER CATEGORIE
+       MET SORTERING
+    ========================= */
+    public function getByCategorySorted(int $categoryId, string $column, string $direction)
+    {
+        $allowedColumns = ['price', 'title'];
+        $allowedDirections = ['ASC', 'DESC'];
+
+        if (!in_array($column, $allowedColumns) || !in_array($direction, $allowedDirections)) {
+            return [];
+        }
+
         $stmt = $this->pdo->prepare("
             SELECT *
             FROM products
             WHERE category_id = :category
-            LIMIT :limit
+            ORDER BY $column $direction
         ");
 
-        $stmt->bindValue(':category', $categoryId, PDO::PARAM_INT);
-        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute([
+            'category' => $categoryId
+        ]);
 
         return $stmt->fetchAll();
     }
 
-    public function getById($id)
+    /* =========================
+       PRODUCT OP ID
+    ========================= */
+    public function getById(int $id)
     {
         $stmt = $this->pdo->prepare("
             SELECT *

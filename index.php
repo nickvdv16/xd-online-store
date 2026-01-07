@@ -3,11 +3,6 @@ require_once 'classes/Product.php';
 
 $productModel = new Product();
 
-/*
-|--------------------------------------------------
-| Categorieën + ID (matcht met database)
-|--------------------------------------------------
-*/
 $sections = [
     1 => [
         'title' => 'Losse kaarten',
@@ -33,23 +28,21 @@ $sections = [
     <meta charset="UTF-8">
     <title>Online Store</title>
 
-    <!-- ALGEMEEN -->
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- HEADER -->
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 </head>
 <body>
 
 <?php include 'includes/header.php'; ?>
 
+<main>
 <?php foreach ($sections as $categoryId => $section): ?>
 <section class="product-section">
     <div class="content-wrapper">
         <div class="section-inner">
             <div class="grid-wrapper">
 
-                <!-- TITEL + SEE ALL -->
                 <div class="section-header">
                     <h2><?= htmlspecialchars($section['title']) ?></h2>
                     <a href="category.php?id=<?= $categoryId ?>" class="see-all">
@@ -57,16 +50,13 @@ $sections = [
                     </a>
                 </div>
 
-                <!-- PRODUCTEN -->
                 <div class="product-grid">
                     <?php foreach ($section['products'] as $product): ?>
-
                         <a href="product.php?id=<?= $product['id'] ?>" class="product-link">
                             <article class="product-card">
 
                                 <div class="product-image">
-                                    <img src="assets/images/<?= htmlspecialchars($product['image']) ?>"
-                                         alt="<?= htmlspecialchars($product['title']) ?>">
+                                    <img src="assets/images/<?= htmlspecialchars($product['image']) ?>">
                                 </div>
 
                                 <h3><?= htmlspecialchars($product['title']) ?></h3>
@@ -83,7 +73,6 @@ $sections = [
 
                             </article>
                         </a>
-
                     <?php endforeach; ?>
                 </div>
 
@@ -92,10 +81,9 @@ $sections = [
     </div>
 </section>
 <?php endforeach; ?>
+</main>
 
-<footer class="footer">
-    © Online Store Werkt
-</footer>
+<?php include 'includes/footer.php'; ?>
 
 </body>
 </html>

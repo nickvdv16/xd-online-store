@@ -3,22 +3,37 @@ session_start();
 
 $cart = $_SESSION['cart'] ?? [];
 
-/* Acties */
+/* =========================
+   ACTIES
+========================= */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    /* VERHOGEN (MET MAX STOCK) */
     if (isset($_POST['increase'])) {
         $id = (int)$_POST['increase'];
-        $_SESSION['cart'][$id]['quantity']++;
-    }
 
-    if (isset($_POST['decrease'])) {
-        $id = (int)$_POST['decrease'];
-        $_SESSION['cart'][$id]['quantity']--;
-        if ($_SESSION['cart'][$id]['quantity'] <= 0) {
-            unset($_SESSION['cart'][$id]);
+        if (
+            isset($_SESSION['cart'][$id]) &&
+            $_SESSION['cart'][$id]['quantity'] < $_SESSION['cart'][$id]['stock']
+        ) {
+            $_SESSION['cart'][$id]['quantity']++;
         }
     }
 
+    /* VERLAGEN */
+    if (isset($_POST['decrease'])) {
+        $id = (int)$_POST['decrease'];
+
+        if (isset($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id]['quantity']--;
+
+            if ($_SESSION['cart'][$id]['quantity'] <= 0) {
+                unset($_SESSION['cart'][$id]);
+            }
+        }
+    }
+
+    /* VERWIJDEREN */
     if (isset($_POST['remove'])) {
         $id = (int)$_POST['remove'];
         unset($_SESSION['cart'][$id]);
@@ -37,8 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- ALGEMEEN -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- HEADER -->
+    <!-- HEADER & FOOTER -->
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 
     <!-- CART -->
     <link rel="stylesheet" href="assets/css/cart.css">
@@ -53,16 +69,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php if (empty($cart)): ?>
 
-        <div class="cart-empty">
-            <p>Je winkelwagen is leeg.</p>
-            <a href="index.php" class="btn">Verder winkelen</a>
+        <!-- =========================
+             LEGE WINKELWAGEN
+        ========================= -->
+        <div class="cart-empty-wrapper">
+
+            <div class="cart-empty">
+                <p>Je winkelwagen is leeg.</p>
+            </div>
+
+            <a href="index.php" class="btn secondary cart-empty-btn">
+                Verder winkelen
+            </a>
+
         </div>
 
     <?php else: ?>
 
+    <!-- =========================
+         WINKELWAGEN MET PRODUCTEN
+    ========================= -->
     <div class="cart-layout">
 
-        <!-- LINKERKANT: PRODUCTEN -->
+        <!-- LINKERKANT -->
         <section class="cart-items">
 
             <div class="cart-header">
@@ -96,13 +125,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span><?= $item['quantity'] ?></span>
 
                     <form method="post">
-                        <button name="increase" value="<?= $item['id'] ?>">+</button>
+                        <button
+                            name="increase"
+                            value="<?= $item['id'] ?>"
+                            <?= $item['quantity'] >= $item['stock'] ? 'disabled' : '' ?>
+                        >+</button>
                     </form>
                 </div>
 
-                <div>
-                    €<?= number_format($sub, 2, ',', '.') ?>
-                </div>
+                <div>€<?= number_format($sub, 2, ',', '.') ?></div>
 
                 <div>
                     <form method="post">
@@ -115,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </section>
 
-        <!-- RECHTERKANT: TOTAAL -->
+        <!-- RECHTERKANT -->
         <aside class="cart-summary">
             <h2>Overzicht</h2>
 
@@ -124,8 +155,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <strong>€<?= number_format($total, 2, ',', '.') ?></strong>
             </div>
 
-            <a href="checkout.php" class="btn primary">Doorgaan naar afrekenen</a>
-            <a href="index.php" class="btn secondary">Verder winkelen</a>
+            <a href="checkout.php" class="btn primary">
+                Doorgaan naar afrekenen
+            </a>
+
+            <a href="index.php" class="btn secondary">
+                Verder winkelen
+            </a>
         </aside>
 
     </div>
@@ -134,9 +170,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </main>
 
-<footer class="footer">
-    © Online Store
-</footer>
-
+<?php include 'includes/footer.php'; ?>
 </body>
 </html>

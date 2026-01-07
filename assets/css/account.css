@@ -1,0 +1,159 @@
+/* =========================
+   ACCOUNT PAGE
+========================= */
+.account-page {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.account-page h1 {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.account-layout {
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+/* =========================
+   LEFT
+========================= */
+.account-left {
+    flex: 1;
+}
+
+/* 👉 TITELS LINKS (zelfde grootte als rechts) */
+.account-left h2,
+.account-left h3 {
+    font-size: 22px;          /* ✔ zelfde als "Mijn bestellingen" */
+    margin-bottom: 20px;
+}
+
+/* BOX */
+.account-box {
+    background: #f2f2f2;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+}
+
+.account-box p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* INPUTS */
+.account-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* EXTRA ruimte boven bevestigen */
+.account-box button {
+    margin-top: 16px;
+}
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+.logout-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+/* =========================
+   RIGHT
+========================= */
+.account-right {
+    flex: 2;
+}
+
+/* 👉 TITEL RECHTS */
+.account-right h2 {
+    font-size: 22px;          /* referentie */
+    margin-bottom: 20px;
+}
+
+/* =========================
+   ORDERS
+========================= */
+.order-box {
+    background: #f2f2f2;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.order-item img {
+    width: 50px;
+    height: auto;
+    border-radius: 6px;
+}
+
+.order-item-info {
+    flex: 1;
+    font-size: 14px;
+}
+
+.order-item-price {
+    font-weight: bold;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* =========================
+   BUTTONS (CHECKOUT STYLE)
+========================= */
+.btn-primary {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    background: #1c2e50;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    opacity: 0.95;
+}
+
+/* FORCEER witte tekst voor logout */
+.logout-btn.btn-primary {
+    color: #ffffff;
+}

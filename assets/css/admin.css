@@ -1,0 +1,50 @@
+/* =========================
+   ADMIN PAGE
+========================= */
+.admin-page {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.admin-page h1 {
+    margin-bottom: 40px;
+}
+
+/* =========================
+   GRID
+========================= */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.admin-card {
+    background: #f2f2f2;
+    padding: 30px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #000;
+    transition: transform 0.2s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-3px);
+}
+
+.admin-card h3 {
+    margin-bottom: 10px;
+}
+
+/* =========================
+   ADMIN HEADER - LOGOUT
+========================= */
+
+.header a {
+    color: #ffffff;
+}
+
+.header a:hover {
+    opacity: 0.85;
+}

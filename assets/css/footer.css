@@ -1,0 +1,11 @@
+.footer {
+    height: 80px;              /* exact zoals header */
+    background-color: #1c2e50;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;              /* ZEER BELANGRIJK */
+}

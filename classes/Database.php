@@ -7,16 +7,12 @@ class Database {
     private $pass = "";
 
     public function connect() {
-        try {
-            $pdo = new PDO(
-                "mysql:host={$this->host};dbname={$this->db};charset=utf8",
-                $this->user,
-                $this->pass
-            );
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-        } catch (PDOException $e) {
-            die("Database error");
-        }
+        $pdo = new PDO(
+            "mysql:host={$this->host};dbname={$this->db};charset=utf8",
+            $this->user,
+            $this->pass,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
+        return $pdo;
     }
 }

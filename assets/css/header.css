@@ -1,42 +1,96 @@
 /* =========================
    HEADER
 ========================= */
-.site-header {
+.header {
     height: 100px;
-    background-color: #e5e5e5;
-    position: relative;
+    background-color: #1e2a5a;
+    display: flex;
+    align-items: center;
 }
 
-/* LOGO LINKS */
-.logo {
-    position: absolute;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
+.header-inner {
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* =========================
+   LOGO
+========================= */
 .logo img {
-    width: 200px;
     height: 80px;
-    object-fit: contain;
+    width: auto;
     display: block;
 }
 
-/* ICONS RECHTS */
+/* =========================
+   ICONEN
+========================= */
 .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+/* ICON AFBEELDING */
+.icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+/* =========================
+   USER INFO (NAAM + SALDO)
+========================= */
+.icon.user.logged-in {
+    display: flex;
+    align-items: center;
+}
+
+.user-meta {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.user-credit {
+    opacity: 0.85;
+}
+
+/* =========================
+   CART BADGE
+========================= */
+.cart-badge {
     position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: -6px;
+    right: -6px;
+
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
 
     display: flex;
     align-items: center;
-    gap: 20px; /* zelfde ruimte tussen user & cart */
-}
-
-.header-icon img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    display: block;
+    justify-content: center;
 }

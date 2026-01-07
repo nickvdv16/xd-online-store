@@ -6,11 +6,34 @@ if (!isset($_GET['id'])) {
 }
 
 $categoryId = (int) $_GET['id'];
+$sort = $_GET['sort'] ?? '';
 
 $productModel = new Product();
-$products = $productModel->getByCategory($categoryId);
 
-/* Categorie namen (tijdelijk hardcoded) */
+/* =========================
+   SORTERING
+========================= */
+switch ($sort) {
+    case 'price_asc':
+        $products = $productModel->getByCategorySorted($categoryId, 'price', 'ASC');
+        break;
+
+    case 'price_desc':
+        $products = $productModel->getByCategorySorted($categoryId, 'price', 'DESC');
+        break;
+
+    case 'name_asc':
+        $products = $productModel->getByCategorySorted($categoryId, 'title', 'ASC');
+        break;
+
+    default:
+        $products = $productModel->getByCategory($categoryId);
+        break;
+}
+
+/* =========================
+   CATEGORIE NAMEN
+========================= */
 $categoryNames = [
     1 => 'Losse kaarten',
     2 => 'Booster Packs',
@@ -29,8 +52,9 @@ $categoryTitle = $categoryNames[$categoryId] ?? 'Categorie';
     <!-- ALGEMEEN -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- HEADER -->
+    <!-- HEADER / FOOTER -->
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 
     <!-- CATEGORY -->
     <link rel="stylesheet" href="assets/css/category.css">
@@ -41,10 +65,12 @@ $categoryTitle = $categoryNames[$categoryId] ?? 'Categorie';
 
 <main class="category-page">
 
-    <!-- TOP BAR -->
+    <!-- =========================
+         TOP BAR
+    ========================= -->
     <div class="category-top">
 
-        <!-- CATEGORIE KNOPPEN (UI ONLY) -->
+        <!-- CATEGORIE KNOPPEN -->
         <div class="category-filters">
             <a href="category.php?id=1" class="<?= $categoryId === 1 ? 'active' : '' ?>">Losse kaarten</a>
             <a href="category.php?id=2" class="<?= $categoryId === 2 ? 'active' : '' ?>">Booster Packs</a>
@@ -52,21 +78,36 @@ $categoryTitle = $categoryNames[$categoryId] ?? 'Categorie';
             <a href="category.php?id=4" class="<?= $categoryId === 4 ? 'active' : '' ?>">Elite Trainer Box</a>
         </div>
 
-        <!-- SORTERING (UI ONLY) -->
+        <!-- SORTERING -->
         <div class="category-sort">
-            <select>
-                <option>Standaard sortering</option>
-                <option>Prijs: laag → hoog</option>
-                <option>Prijs: hoog → laag</option>
-            </select>
+            <form method="get">
+                <input type="hidden" name="id" value="<?= $categoryId ?>">
+
+                <select name="sort" onchange="this.form.submit()">
+                    <option value="">Standaard sortering</option>
+                    <option value="price_asc" <?= $sort === 'price_asc' ? 'selected' : '' ?>>
+                        Prijs: laag → hoog
+                    </option>
+                    <option value="price_desc" <?= $sort === 'price_desc' ? 'selected' : '' ?>>
+                        Prijs: hoog → laag
+                    </option>
+                    <option value="name_asc" <?= $sort === 'name_asc' ? 'selected' : '' ?>>
+                        Naam: A → Z
+                    </option>
+                </select>
+            </form>
         </div>
 
     </div>
 
-    <!-- TITEL -->
+    <!-- =========================
+         TITEL
+    ========================= -->
     <h1 class="category-title"><?= htmlspecialchars($categoryTitle) ?></h1>
 
-    <!-- PRODUCT GRID -->
+    <!-- =========================
+         PRODUCT GRID
+    ========================= -->
     <div class="content-wrapper">
         <div class="section-inner">
             <div class="grid-wrapper">
@@ -78,8 +119,10 @@ $categoryTitle = $categoryNames[$categoryId] ?? 'Categorie';
                             <article class="product-card">
 
                                 <div class="product-image">
-                                    <img src="assets/images/<?= htmlspecialchars($product['image']) ?>"
-                                         alt="<?= htmlspecialchars($product['title']) ?>">
+                                    <img
+                                        src="assets/images/<?= htmlspecialchars($product['image']) ?>"
+                                        alt="<?= htmlspecialchars($product['title']) ?>"
+                                    >
                                 </div>
 
                                 <h3><?= htmlspecialchars($product['title']) ?></h3>
@@ -106,9 +149,7 @@ $categoryTitle = $categoryNames[$categoryId] ?? 'Categorie';
 
 </main>
 
-<footer class="footer">
-    © Online Store Werkt
-</footer>
+<?php include 'includes/footer.php'; ?>
 
 </body>
 </html>

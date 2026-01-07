@@ -8,7 +8,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html,
 body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
     background-color: #ffffff;
     color: #000;
 }
@@ -28,24 +36,30 @@ a:active {
    HEADER
 ========================= */
 .header {
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     background-color: #e5e5e5;
-    padding: 15px 30px;
+    padding: 0 30px;
 }
 
 .logo {
-    padding: 10px 20px;
-    border-radius: 8px;
     font-weight: bold;
 }
 
 .header-right .icon {
     margin-left: 20px;
     font-size: 20px;
-    text-decoration: none;
     color: #000;
+}
+
+/* =========================
+   MAIN (DUWT FOOTER NAAR ONDER)
+========================= */
+main {
+    flex: 1;
 }
 
 /* =========================
@@ -174,7 +188,13 @@ a:active {
    FOOTER
 ========================= */
 .footer {
-    padding: 20px 30px;
+    height: 100px;
+    background-color: #1c2e50;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
     font-size: 14px;
-    color: #555;
 }
